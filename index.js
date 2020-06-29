@@ -48,7 +48,7 @@ embed.info = function (url) {
       id: id,
       source: YOUTUBE,
       url: url.href,
-      embedUrl: `//www.youtube.com/embed/${id}`,
+      embedUrl: '//www.youtube.com/embed/' + id,
     }
   }
 
@@ -58,7 +58,7 @@ embed.info = function (url) {
       id: id,
       source: VIMEO,
       url: url.href,
-      embedUrl: `//player.vimeo.com/video/${id}`,
+      embedUrl: '//player.vimeo.com/video/' + id,
     }
   }
 
@@ -68,7 +68,7 @@ embed.info = function (url) {
       id: id,
       source: DAILYMOTION,
       url: url.href,
-      embedUrl: `//www.dailymotion.com/embed/video/${id}`,
+      embedUrl: '//www.dailymotion.com/embed/video/' + id,
     }
   }
 }
