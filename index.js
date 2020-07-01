@@ -91,18 +91,16 @@ embed.image = function (url, opts, cb) {
 }
 
 function detectVimeo (url, uri) {
-  var host = uri.host
   var match
-  return (host === 'vimeo.com' && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
+  return (uri.host === 'vimeo.com' && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
 }
 
 function detectYoutube (url, uri) {
-  var host = uri.host
-  if (host.indexOf('youtube.com') > -1) {
+  if (uri.host.indexOf('youtube.com') > -1) {
     return url.query.v
   }
 
-  if (host === 'youtu.be') {
+  if (uri.host === 'youtu.be') {
     return url.pathname.split('/')[1]
   }
 
@@ -110,12 +108,11 @@ function detectYoutube (url, uri) {
 }
 
 function detectDailymotion (url, uri) {
-  var host = uri.host
-  if (host.indexOf('dailymotion.com') > -1) {
+  if (uri.host.indexOf('dailymotion.com') > -1) {
     return url.pathname.split('/')[2].split('_')[0]
   }
 
-  if (host === 'dai.ly') {
+  if (uri.host === 'dai.ly') {
     return url.pathname.split('/')[1]
   }
 
