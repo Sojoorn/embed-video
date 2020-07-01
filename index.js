@@ -1,4 +1,5 @@
 var URL = require('url')
+var URI = require('uri-js')
 var promise = require('promise-polyfill')
 var fetch = require('fetch-ponyfill')({ Promise: promise }).fetch
 var escape = require('lodash.escape')
@@ -38,11 +39,12 @@ function embed (url, opts) {
 }
 
 embed.info = function (url) {
+  var uri = URI.parse(url);
   url = URL.parse(url, true)
 
   var id
 
-  id = detectYoutube(url)
+  id = detectYoutube(url, uri)
   if (id) {
     return {
       id: id,
@@ -52,7 +54,7 @@ embed.info = function (url) {
     }
   }
 
-  id = detectVimeo(url)
+  id = detectVimeo(url, uri)
   if (id) {
     return {
       id: id,
@@ -62,7 +64,7 @@ embed.info = function (url) {
     }
   }
 
-  id = detectDailymotion(url)
+  id = detectDailymotion(url, uri)
   if (id) {
     return {
       id: id,
@@ -88,29 +90,32 @@ embed.image = function (url, opts, cb) {
   return res && embed[res.source].image(res.id, opts, cb)
 }
 
-function detectVimeo (url) {
+function detectVimeo (url, uri) {
+  var host = uri.host;
   var match
-  return (url.hostname === 'vimeo.com' && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
+  return (host === 'vimeo.com' && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
 }
 
-function detectYoutube (url) {
-  if (url.hostname.indexOf('youtube.com') > -1) {
+function detectYoutube (url, uri) {
+  var host = uri.host;
+  if (host.indexOf('youtube.com') > -1) {
     return url.query.v
   }
 
-  if (url.hostname === 'youtu.be') {
+  if (host === 'youtu.be') {
     return url.pathname.split('/')[1]
   }
 
   return null
 }
 
-function detectDailymotion (url) {
-  if (url.hostname.indexOf('dailymotion.com') > -1) {
+function detectDailymotion (url, uri) {
+  var host = uri.host;
+  if (host.indexOf('dailymotion.com') > -1) {
     return url.pathname.split('/')[2].split('_')[0]
   }
 
-  if (url.hostname === 'dai.ly') {
+  if (host === 'dai.ly') {
     return url.pathname.split('/')[1]
   }
 
