@@ -39,7 +39,7 @@ function embed (url, opts) {
 }
 
 embed.info = function (url) {
-  var uri = URI.parse(url);
+  var uri = URI.parse(url)
   url = URL.parse(url, true)
 
   var id
@@ -91,13 +91,13 @@ embed.image = function (url, opts, cb) {
 }
 
 function detectVimeo (url, uri) {
-  var host = uri.host;
+  var host = uri.host
   var match
   return (host === 'vimeo.com' && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
 }
 
 function detectYoutube (url, uri) {
-  var host = uri.host;
+  var host = uri.host
   if (host.indexOf('youtube.com') > -1) {
     return url.query.v
   }
@@ -110,7 +110,7 @@ function detectYoutube (url, uri) {
 }
 
 function detectDailymotion (url, uri) {
-  var host = uri.host;
+  var host = uri.host
   if (host.indexOf('dailymotion.com') > -1) {
     return url.pathname.split('/')[2].split('_')[0]
   }
