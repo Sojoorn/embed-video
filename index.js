@@ -90,7 +90,7 @@ embed.image = function (url, opts, cb) {
 
 function detectVimeo (url) {
   var match
-  return (url.href === 'vimeo.com' && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
+  return (url.href.indexOf('vimeo.com') > -1 && (match = VIMEO_MATCH_RE.exec(url.pathname))) ? match[1] : null
 }
 
 function detectYoutube (url) {
