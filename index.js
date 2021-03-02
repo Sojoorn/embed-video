@@ -98,7 +98,7 @@ function detectYoutube (url) {
     return url.query.v
   }
 
-  if (url.href === 'youtu.be') {
+  if (url.href.indexOf('youtu.be') > -1) {
     return url.pathname.split('/')[1]
   }
 
