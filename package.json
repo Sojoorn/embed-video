@@ -1,6 +1,6 @@
 {
   "name": "embed-video",
-  "version": "2.0.11",
+  "version": "2.0.12",
   "description": "Get embed code for embedding youtube/vimeo/whatever video in websites from URL or ID",
   "main": "index.js",
   "scripts": {
@@ -26,11 +26,11 @@
   },
   "homepage": "https://github.com/alanshaw/embed-video",
   "devDependencies": {
-    "standard": "^11.0.1",
+    "standard": "^17.1.0",
     "tape": "^4.0.0"
   },
   "dependencies": {
-    "fetch-ponyfill": "^4.0.0",
+    "fetch-ponyfill": "^7.1.0",
     "lodash.escape": "^4.0.1",
     "promise-polyfill": "^6.0.2",
     "uri-js": "^4.2.2"
