@@ -1,5 +1,5 @@
 {
-  "name": "embed-video",
+  "name": "@sojoorn/embed-video",
   "version": "2.0.12",
   "description": "Get embed code for embedding youtube/vimeo/whatever video in websites from URL or ID",
   "main": "index.js",
